@@ -1,0 +1,32 @@
+package de.schulte.ledboard.gamecollection.drawable;
+
+import ledControl.BoardController;
+
+/**
+ * A Drawable Cross which is given its size by x- and y-factor.
+ *
+ * @author Constantin Schulte
+ */
+public class Cross extends Drawable {
+
+    /**
+     * Calls constructor of Drawable.
+     *
+     * @param xFactor the x-stretching of the cross (if xFactor > yFactor)
+     * @param yFactor the y-stretching of the cross (if yFactor > xFactor)
+     * @param xAdd the lowest x-value.
+     * @param yAdd the lowest y-value.
+     */
+    public Cross(int xFactor, int yFactor, int xAdd, int yAdd){
+        super(xFactor, yFactor, xAdd, yAdd);
+    }
+
+    @Override
+    public void draw(BoardController controller) {
+        int size = xFactor > yFactor ? xFactor : yFactor;
+        for(int x = 0; x < size; ++x){
+            controller.setColor(x + xAdd, x + yAdd, 127, 0, 0);
+            controller.setColor(size - x - 1 + xAdd, x + yAdd, 127, 0, 0);
+        }
+    }
+}
