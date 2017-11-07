@@ -65,8 +65,8 @@ public class Menu {
 
     private void drawMenuScreen(){
         controller.resetColors();
-        Arrow down = new Arrow(controller, 1, -1, 0, 11);
-        Arrow up = new Arrow(controller, 1, 1, 0, 0);
+        Arrow down = new Arrow(controller, 1, -1, 0, 11, new int[]{127, 127, 127});
+        Arrow up = new Arrow(controller, 1, 1, 0, 0, new int[]{127, 127, 127});
         down.draw();
         up.draw();
         switch(currentGame){
@@ -87,27 +87,33 @@ public class Menu {
     }
 
     private void startExample(){
-        Cross cross = new Cross(controller, 4, 3, 4, 5);
+        Cross cross = new Cross(controller, 4, 3, 4, 5, new int[]{100, 100, 100});
         cross.draw();
         controller.updateLedStripe();
         controller.sleep(2000);
     }
 
     private void drawExample(){
-        Rectangle rect = new Rectangle(controller, 1, 4, 8, 8);
+        Rectangle rect = new Rectangle(controller, 1, 4, 8, 8, new int[]{100, 100, 100});
         rect.draw();
-        Cross cross = new Cross(controller, 3, 3, 3, 5);
+        Cross cross = new Cross(controller, 3, 3, 3, 5, new int[]{127, 127, 127});
         cross.draw();
     }
 
     private void drawTicTacToe(){
-        Rectangle line1 = new Rectangle(controller, 1, 8, 5, 2);
-        Rectangle line2 = new Rectangle(controller, 1, 8, 8, 2);
-        Rectangle line3 = new Rectangle(controller, 8, 1, 3, 4);
-        Rectangle line4 = new Rectangle(controller, 8, 1, 3, 7);
+        Rectangle line1 = new Rectangle(controller, 1, 10, 5, 1, new int[]{90, 90, 90});
+        Rectangle line2 = new Rectangle(controller, 1, 10, 8, 1, new int[]{90, 90, 90});
+        Rectangle line3 = new Rectangle(controller, 10, 1, 2, 4, new int[]{90, 90, 90});
+        Rectangle line4 = new Rectangle(controller, 10, 1, 2, 7, new int[]{90, 90, 90});
+        Rectangle blue1 = new Rectangle(controller, 2, 2, 6, 5, new int[]{0, 0, 80});
+        Rectangle blue2 = new Rectangle(controller, 2, 2, 3, 5, new int[]{0, 0, 80});
+        Rectangle red = new Rectangle(controller, 2, 2, 9, 2, new int[]{80, 0, 0});
+        blue2.draw();
+        blue1.draw();
         line1.draw();
         line2.draw();
         line3.draw();
         line4.draw();
+        red.draw();
     }
 }

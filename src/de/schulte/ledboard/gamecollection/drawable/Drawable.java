@@ -17,6 +17,7 @@ public abstract class Drawable {
      */
     int xAdd, yAdd;
     protected BoardController controller;
+    protected int[] primaryColor;
 
     /**
      * Set all the parameters.
@@ -27,12 +28,13 @@ public abstract class Drawable {
      * @param xAdd the lowest x-value for a positive x-factor
      * @param yAdd the lowest y-value for a positive y-factor
      */
-    Drawable(BoardController controller, int xFactor, int yFactor, int xAdd, int yAdd){
+    Drawable(BoardController controller, int xFactor, int yFactor, int xAdd, int yAdd, int[] primaryColor){
         this.controller = controller;
         this.xFactor = xFactor;
         this.yFactor = yFactor;
         this.xAdd = xAdd;
         this.yAdd = yAdd;
+        this.primaryColor = primaryColor;
     }
 
     /**

@@ -17,16 +17,16 @@ public class Cross extends Drawable {
      * @param xAdd the lowest x-value.
      * @param yAdd the lowest y-value.
      */
-    public Cross(BoardController controller, int xFactor, int yFactor, int xAdd, int yAdd){
-        super(controller, xFactor, yFactor, xAdd, yAdd);
+    public Cross(BoardController controller, int xFactor, int yFactor, int xAdd, int yAdd, int[] primaryColor){
+        super(controller, xFactor, yFactor, xAdd, yAdd, primaryColor);
     }
 
     @Override
     public void draw() {
         int size = xFactor > yFactor ? xFactor : yFactor;
         for(int x = 0; x < size; ++x){
-            controller.setColor(x + xAdd, x + yAdd, 127, 0, 0);
-            controller.setColor(size - x - 1 + xAdd, x + yAdd, 127, 0, 0);
+            controller.setColor(x + xAdd, x + yAdd, primaryColor);
+            controller.setColor(size - x - 1 + xAdd, x + yAdd, primaryColor);
         }
     }
 }
