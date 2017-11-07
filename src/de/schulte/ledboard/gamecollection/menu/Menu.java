@@ -54,9 +54,13 @@ public class Menu {
                     if(currentGame > AMOUNT_GAMES){
                         currentGame = 0;
                     }
+
+                }else if(input.getKeyCode() == KeyEvent.VK_ENTER){
+                    startGame();
                 }else if(input.getKeyCode() == KeyEvent.VK_ESCAPE){
                     stop = true;
                 }
+                inputControl.clear();
             }
         }
     }
@@ -72,6 +76,21 @@ public class Menu {
                 drawExample();break;
         }
         controller.updateLedStripe();
+    }
+
+    private void startGame(){
+        controller.resetColors();
+        switch (currentGame){
+            case 1:
+                startExample();break;
+        }
+    }
+
+    private void startExample(){
+        Cross cross = new Cross(controller, 4, 3, 4, 5);
+        cross.draw();
+        controller.updateLedStripe();
+        controller.sleep(2000);
     }
 
     private void drawExample(){
