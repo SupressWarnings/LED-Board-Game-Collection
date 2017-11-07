@@ -22,8 +22,6 @@ public class Menu {
 
     private int currentGame = 1;
 
-    private final int AMOUNT_GAMES = 1;
-
     /**
      * Create a new Menu with initializing the graphics.
      *
@@ -43,7 +41,8 @@ public class Menu {
         while(!stop){
             drawMenuScreen();
             KeyEvent input = inputControl.pop();
-            if(input != null){
+            if(input != null && input.getID() == KeyEvent.KEY_PRESSED){
+                int AMOUNT_GAMES = 2;
                 if(input.getKeyCode() == KeyEvent.VK_DOWN){
                     --currentGame;
                     if(currentGame == 0){
@@ -52,9 +51,8 @@ public class Menu {
                 }else if(input.getKeyCode() == KeyEvent.VK_UP){
                     ++currentGame;
                     if(currentGame > AMOUNT_GAMES){
-                        currentGame = 0;
+                        currentGame = 1;
                     }
-
                 }else if(input.getKeyCode() == KeyEvent.VK_ENTER){
                     startGame();
                 }else if(input.getKeyCode() == KeyEvent.VK_ESCAPE){
@@ -74,6 +72,8 @@ public class Menu {
         switch(currentGame){
             case 1:
                 drawExample();break;
+            case 2:
+                drawTicTacToe();break;
         }
         controller.updateLedStripe();
     }
@@ -94,7 +94,20 @@ public class Menu {
     }
 
     private void drawExample(){
+        Rectangle rect = new Rectangle(controller, 1, 4, 8, 8);
+        rect.draw();
         Cross cross = new Cross(controller, 3, 3, 3, 5);
         cross.draw();
+    }
+
+    private void drawTicTacToe(){
+        Rectangle line1 = new Rectangle(controller, 1, 8, 5, 2);
+        Rectangle line2 = new Rectangle(controller, 1, 8, 8, 2);
+        Rectangle line3 = new Rectangle(controller, 8, 1, 3, 4);
+        Rectangle line4 = new Rectangle(controller, 8, 1, 3, 7);
+        line1.draw();
+        line2.draw();
+        line3.draw();
+        line4.draw();
     }
 }
