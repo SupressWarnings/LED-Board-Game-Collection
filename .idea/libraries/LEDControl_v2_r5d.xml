@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="LEDControl_v2_r5d">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/LEDControl_v2_r5d.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
