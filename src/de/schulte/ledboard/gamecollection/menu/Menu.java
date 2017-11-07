@@ -2,6 +2,9 @@ package de.schulte.ledboard.gamecollection.menu;
 
 import de.schulte.ledboard.gamecollection.drawable.*;
 import ledControl.BoardController;
+import ledControl.gui.KeyBuffer;
+
+import java.awt.event.KeyEvent;
 
 /**
  * The graphic representation of the menu.
@@ -15,7 +18,9 @@ public class Menu {
      */
     private BoardController controller;
 
-    private int currentGame = 0;
+    private KeyBuffer inputControl;
+
+    private int currentGame = 1;
 
     private final int AMOUNT_GAMES = 1;
 
@@ -26,6 +31,7 @@ public class Menu {
      */
     public Menu(BoardController controller){
         this.controller = controller;
+        inputControl = KeyBuffer.getKeyBuffer();
         init();
     }
 
@@ -33,7 +39,26 @@ public class Menu {
      * Draws the graphical elements for the single games.
      */
     private void init(){
-        drawMenuScreen();
+        boolean stop = false;
+        while(!stop){
+            drawMenuScreen();
+            KeyEvent input = inputControl.pop();
+            if(input != null){
+                if(input.getKeyCode() == KeyEvent.VK_DOWN){
+                    --currentGame;
+                    if(currentGame == 0){
+                        currentGame = AMOUNT_GAMES;
+                    }
+                }else if(input.getKeyCode() == KeyEvent.VK_UP){
+                    ++currentGame;
+                    if(currentGame > AMOUNT_GAMES){
+                        currentGame = 0;
+                    }
+                }else if(input.getKeyCode() == KeyEvent.VK_ESCAPE){
+                    stop = true;
+                }
+            }
+        }
     }
 
     private void drawMenuScreen(){
@@ -43,7 +68,7 @@ public class Menu {
         down.draw();
         up.draw();
         switch(currentGame){
-            case 0:
+            case 1:
                 drawExample();break;
         }
         controller.updateLedStripe();
