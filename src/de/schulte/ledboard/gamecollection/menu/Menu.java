@@ -15,6 +15,10 @@ public class Menu {
      */
     private BoardController controller;
 
+    private int currentGame = 0;
+
+    private final int AMOUNT_GAMES = 1;
+
     /**
      * Create a new Menu with initializing the graphics.
      *
@@ -29,12 +33,24 @@ public class Menu {
      * Draws the graphical elements for the single games.
      */
     private void init(){
-        Arrow arrow = new Arrow(controller, 1, -1, 0, 11);
-        Arrow arrow2 = new Arrow(controller, 1, 1, 0, 0);
-        Cross cross = new Cross(controller, 3, 3, 3, 5);
-        arrow.draw();
-        arrow2.draw();
-        cross.draw();
+        drawMenuScreen();
+    }
+
+    private void drawMenuScreen(){
+        controller.resetColors();
+        Arrow down = new Arrow(controller, 1, -1, 0, 11);
+        Arrow up = new Arrow(controller, 1, 1, 0, 0);
+        down.draw();
+        up.draw();
+        switch(currentGame){
+            case 0:
+                drawExample();break;
+        }
         controller.updateLedStripe();
+    }
+
+    private void drawExample(){
+        Cross cross = new Cross(controller, 3, 3, 3, 5);
+        cross.draw();
     }
 }
