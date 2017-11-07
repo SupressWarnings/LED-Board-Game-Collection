@@ -17,12 +17,12 @@ public class Arrow extends Drawable{
      * @param xAdd the lowest x-value (for positive x-factors)
      * @param yAdd the lowest y-value (for positive y-factors)
      */
-    public Arrow(int xFactor, int yFactor, int xAdd, int yAdd){
-        super(xFactor, yFactor, xAdd, yAdd);
+    public Arrow(BoardController controller, int xFactor, int yFactor, int xAdd, int yAdd){
+        super(controller, xFactor, yFactor, xAdd, yAdd);
     }
 
     @Override
-    public void draw(BoardController controller) {
+    public void draw() {
         controller.setColor(xFactor + xAdd, yFactor + yAdd, 127, 127, 127);
         controller.setColor(xFactor + xAdd, 2 * yFactor + yAdd, 127, 127, 127);
         controller.setColor(xFactor + xAdd, 3 * yFactor + yAdd, 127, 127, 127);

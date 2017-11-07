@@ -16,16 +16,19 @@ public abstract class Drawable {
      * Setting the lowest x- and y-value if x- / y-factor are positive.
      */
     int xAdd, yAdd;
+    protected BoardController controller;
 
     /**
      * Set all the parameters.
      *
+     * @param controller the BoardController of the corresponding LED-matrix.
      * @param xFactor the x-stretching / size of the Drawable
      * @param yFactor the y-stretching / size of the Drawable
      * @param xAdd the lowest x-value for a positive x-factor
      * @param yAdd the lowest y-value for a positive y-factor
      */
-    Drawable(int xFactor, int yFactor, int xAdd, int yAdd){
+    Drawable(BoardController controller, int xFactor, int yFactor, int xAdd, int yAdd){
+        this.controller = controller;
         this.xFactor = xFactor;
         this.yFactor = yFactor;
         this.xAdd = xAdd;
@@ -34,8 +37,6 @@ public abstract class Drawable {
 
     /**
      * Draws the specific Drawable with the parameters on the LED-matrix.
-     *
-     * @param controller the BoardController of the corresponding LED-matrix.
      */
-    public abstract void draw(BoardController controller);
+    public abstract void draw();
 }
