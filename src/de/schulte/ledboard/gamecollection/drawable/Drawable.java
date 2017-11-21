@@ -16,8 +16,8 @@ public abstract class Drawable {
      * Setting the lowest x- and y-value if x- / y-factor are positive.
      */
     int xAdd, yAdd;
-    protected BoardController controller;
-    protected int[] primaryColor;
+    BoardController controller;
+    int[] primaryColor;
 
     /**
      * Set all the parameters.
