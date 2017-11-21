@@ -14,18 +14,24 @@ import java.awt.event.KeyEvent;
 public class Menu {
 
     /**
-     * The specific controller of the LED-Board on which the Menu should be represented.
+     * The BoardController used in the whole application.
      */
     private BoardController controller;
 
+    /**
+     * The KeyBuffer all input goes to.
+     */
     private KeyBuffer inputControl;
 
+    /**
+     * Representing the game currently showed in the menu.
+     */
     private int currentGame = 1;
 
     /**
      * Create a new Menu with initializing the graphics.
      *
-     * @param controller the controller of the board.
+     * @param controller The BoardController used in the whole application.
      */
     public Menu(BoardController controller){
         this.controller = controller;
@@ -63,6 +69,11 @@ public class Menu {
         }
     }
 
+    /**
+     * Draws the basic Menu and chooses the specific game to show on the screen.
+     *
+     * TODO switch from hardcoding every menu to a better solution
+     */
     private void drawMenuScreen(){
         controller.resetColors();
         Arrow down = new Arrow(controller, 1, -1, 0, 11, new int[]{127, 127, 127});
@@ -80,6 +91,11 @@ public class Menu {
         controller.updateLedStripe();
     }
 
+    /**
+     * Starts the currently shown game.
+     *
+     * TODO add games and switch from hardcoding to a better solution.
+     */
     private void startGame(){
         controller.resetColors();
         switch (currentGame){
@@ -87,6 +103,11 @@ public class Menu {
         }
     }
 
+    /**
+     * Draws the TicTacToe menu screen.
+     *
+     * TODO put to another location like the game package instead of the Menu class.
+     */
     private void drawTicTacToe(){
         Rectangle line1 = new Rectangle(controller, 1, 10, 5, 1, new int[]{90, 90, 90});
         Rectangle line2 = new Rectangle(controller, 1, 10, 8, 1, new int[]{90, 90, 90});
@@ -104,6 +125,11 @@ public class Menu {
         red.draw();
     }
 
+    /**
+     * Draws the Snake menu screen.
+     *
+     * TODO put to another location like the game package instead of the Menu class.
+     */
     private void drawSnake(){
         Rectangle line1 = new Rectangle(controller, 6, 1, 5, 2, new int[]{10, 100, 10});
         Rectangle line2 = new Rectangle(controller, 1, 2, 10, 3, new int[]{10, 100, 10});
@@ -116,6 +142,11 @@ public class Menu {
         line3.draw();
     }
 
+    /**
+     * Draws the Pong menu screen.
+     *
+     * TODO put to another location like the game package instead of the Menu class.
+     */
     private void drawPong(){
         Rectangle line1 = new Rectangle(controller, 3, 1, 4, 0, new int[]{10, 10, 120});
         Rectangle line2 = new Rectangle(controller, 4, 1, 8, 1, new int[]{120, 10, 10});
