@@ -42,7 +42,7 @@ public class Menu {
             drawMenuScreen();
             KeyEvent input = inputControl.pop();
             if(input != null && input.getID() == KeyEvent.KEY_PRESSED){
-                int AMOUNT_GAMES = 4;
+                int AMOUNT_GAMES = 3;
                 if(input.getKeyCode() == KeyEvent.VK_DOWN){
                     --currentGame;
                     if(currentGame == 0){
@@ -71,12 +71,10 @@ public class Menu {
         up.draw();
         switch(currentGame){
             case 1:
-                drawExample();break;
+                drawSnake();break;
             case 2:
                 drawTicTacToe();break;
             case 3:
-                drawSnake();break;
-            case 4:
                 drawPong();break;
         }
         controller.updateLedStripe();
@@ -85,23 +83,8 @@ public class Menu {
     private void startGame(){
         controller.resetColors();
         switch (currentGame){
-            case 1:
-                startExample();break;
+            case 10000:break;
         }
-    }
-
-    private void startExample(){
-        Cross cross = new Cross(controller, 4, 3, 4, 5, new int[]{100, 100, 100});
-        cross.draw();
-        controller.updateLedStripe();
-        controller.sleep(2000);
-    }
-
-    private void drawExample(){
-        Rectangle rect = new Rectangle(controller, 1, 4, 8, 8, new int[]{100, 100, 100});
-        rect.draw();
-        Cross cross = new Cross(controller, 3, 3, 3, 5, new int[]{127, 127, 127});
-        cross.draw();
     }
 
     private void drawTicTacToe(){
