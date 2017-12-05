@@ -28,7 +28,7 @@ public class Arrow extends Drawable{
      */
     @Override
     public void draw() {
-        Rectangle line = new Rectangle(controller, xFactor - 1, 1, xAdd + 1, yAdd + 1, primaryColor);
+        Rectangle line = new Rectangle(controller, xFactor, yFactor >= 0 ? 3*yFactor : -3*yFactor, xAdd + 1, yFactor >= 0 ? yAdd + 1 : yAdd + 3*yFactor, primaryColor);
         line.draw();
         controller.setColor(xAdd, yFactor + yAdd, 0, 0, 127);
         controller.setColor(xFactor + xAdd, yAdd, 0, 0, 127);

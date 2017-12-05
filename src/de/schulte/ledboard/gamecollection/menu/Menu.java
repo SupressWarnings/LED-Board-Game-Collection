@@ -67,6 +67,8 @@ public class Menu {
                 inputControl.clear();
             }
         }
+        controller.resetColors();
+        controller.updateLedStripe();
     }
 
     /**
@@ -150,10 +152,10 @@ public class Menu {
     private void drawPong(){
         Rectangle line1 = new Rectangle(controller, 3, 1, 4, 0, new int[]{10, 10, 120});
         Rectangle line2 = new Rectangle(controller, 4, 1, 8, 1, new int[]{120, 10, 10});
-        Rectangle line3 = new Rectangle(controller, 7, 1, 4, 2, new int[]{100, 100, 100});
+        Rectangle line3 = new Rectangle(controller, 7, 1, 4, 2, new int[]{120, 40, 90});
         Rectangle line4 = new Rectangle(controller, 1, 3, 3, 4, new int[]{120, 120, 120});
         Rectangle line5 = new Rectangle(controller, 1, 3, 11, 6, new int[]{120, 120, 120});
-        Rectangle line6 = new Rectangle(controller, 7, 1, 4, 9, new int[]{100, 100, 100});
+        Rectangle line6 = new Rectangle(controller, 7, 1, 4, 9, new int[]{120, 40, 90});
         controller.setColor(8, 8, new int[]{10, 120, 10});
         line1.draw();
         line2.draw();

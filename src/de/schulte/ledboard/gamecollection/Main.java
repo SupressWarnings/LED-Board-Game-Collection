@@ -21,7 +21,8 @@ public class Main {
      *
      * @param args - No special arguments are allowed -
      */
-    public static void main(String[] args){
+    public static void main(String[] args) {
+        //controller.addNetworkHost("132.252.250.93");
         new Menu(controller);
     }
 }
