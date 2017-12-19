@@ -10,9 +10,11 @@ public class Game {
     private Location apple;
     private Random r;
     private BoardController controller;
+    private Input input;
 
     public Game(BoardController controller){
         this.controller = controller;
+        input = new Input(controller);
         snake = new Snake(new Location((int)controller.getHeight()/2, (int)controller.getWidth()/2));
         createApple();
     }
@@ -22,6 +24,10 @@ public class Game {
         while(!collision){
             snake.move();
             collision = checkSnakeCollision();
+            char direction = input.getInput();
+            if (direction == 'U' || direction == 'D' || direction == 'L' || direction == 'R') {
+                snake.setDirection(direction);
+            }
             controller.sleep(100);
         }
     }
