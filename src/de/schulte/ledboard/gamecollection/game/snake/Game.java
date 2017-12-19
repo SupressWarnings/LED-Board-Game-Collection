@@ -11,35 +11,46 @@ public class Game {
     private Random r;
     private BoardController controller;
     private Input input;
+    private View view;
 
     public Game(BoardController controller){
         this.controller = controller;
+        r = new Random();
         input = new Input(controller);
         snake = new Snake(new Location((int)controller.getHeight()/2, (int)controller.getWidth()/2));
+        view = new View(controller, snake.getSnake());
         createApple();
+        view.drawWelcomeScreen();
+        controller.sleep(5000);
+        view.drawSnake(snake.getSnake());
+        view.drawApple(apple);
+        play();
     }
 
     public void play(){
         boolean collision = false;
         while(!collision){
             snake.move();
-            collision = checkSnakeCollision();
+            collision = checkCollisions();
             char direction = input.getInput();
             if (direction == 'U' || direction == 'D' || direction == 'L' || direction == 'R') {
                 snake.setDirection(direction);
             }
-            controller.sleep(100);
+            view.drawSnake(snake.getSnake());
+            view.drawApple(apple);
+            controller.sleep(150);
         }
+        controller.sleep(1000);
     }
 
-    private boolean checkCollisions(){
+    private boolean checkCollisions() {
         checkAppleCollision();
         return checkSnakeCollision();
     }
 
     private boolean checkSnakeCollision(){
         boolean collision = false;
-        for(int i = 1; i <= snake.getSnake().size(); ++i){
+        for(int i = 1; i < snake.getSnake().size(); ++i){
             if(snake.getSnake().get(i).equals(snake.getSnake().get(0))){
                 collision = true;
             }
@@ -51,6 +62,7 @@ public class Game {
         if(snake.getSnake().get(0).equals(apple)){
             snake.grow();
             createApple();
+            System.out.println("Apfel gefressen");
         }
     }
 
@@ -64,5 +76,6 @@ public class Game {
                 }
             }
         }
+        System.out.println("Apfel erzeugt");
     }
 }

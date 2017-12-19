@@ -84,7 +84,7 @@ public class Menu {
         up.draw();
         switch(currentGame){
             case 1:
-                drawSnake();break;
+                de.schulte.ledboard.gamecollection.game.snake.View.drawMenu(controller);break;
             case 2:
                 drawTicTacToe();break;
             case 3:
@@ -101,6 +101,8 @@ public class Menu {
     private void startGame(){
         controller.resetColors();
         switch (currentGame){
+            case 1:
+                new de.schulte.ledboard.gamecollection.game.snake.Game(controller);
             case 10000:break;
         }
     }
@@ -125,23 +127,6 @@ public class Menu {
         line3.draw();
         line4.draw();
         red.draw();
-    }
-
-    /**
-     * Draws the Snake menu screen.
-     *
-     * TODO put to another location like the game package instead of the Menu class.
-     */
-    private void drawSnake(){
-        Rectangle line1 = new Rectangle(controller, 6, 1, 5, 2, new int[]{10, 100, 10});
-        Rectangle line2 = new Rectangle(controller, 1, 2, 10, 3, new int[]{10, 100, 10});
-        Rectangle line3 = new Rectangle(controller, 1, 6, 8, 4, new int[]{10, 100, 10});
-        controller.setColor(9, 4, new int[]{10, 100, 10});
-        controller.setColor(7, 9, new int[]{10, 120, 10});
-        controller.setColor(6, 7, new int[]{120, 10, 10});
-        line1.draw();
-        line2.draw();
-        line3.draw();
     }
 
     /**

@@ -26,18 +26,18 @@ public class Snake {
         snake.remove(snake.size()-1);
         switch(direction){
             case 'R':
-                snake.add(0, new Location(snake.get(0).getX()+1 < 11 ? snake.get(0).getX()+1 : 0, snake.get(0).getY()));break;
+                snake.add(0, new Location(snake.get(0).getX()+1 <= 11 ? snake.get(0).getX()+1 : 0, snake.get(0).getY()));break;
             case 'L':
-                snake.add(0, new Location(snake.get(0).getX()-1 > 0 ? snake.get(0).getX()-1 : 11, snake.get(0).getY()));break;
+                snake.add(0, new Location(snake.get(0).getX()-1 >= 0 ? snake.get(0).getX()-1 : 11, snake.get(0).getY()));break;
             case 'U':
-                snake.add(0, new Location(snake.get(0).getX(), snake.get(0).getY()-1 > 0 ? snake.get(0).getY()-1 : 11));break;
+                snake.add(0, new Location(snake.get(0).getX(), snake.get(0).getY()-1 >= 0 ? snake.get(0).getY()-1 : 11));break;
             case 'D':
-                snake.add(0, new Location(snake.get(0).getX(), snake.get(0).getY()+1 < 11 ? snake.get(0).getY()+1 : 0));break;
+                snake.add(0, new Location(snake.get(0).getX(), snake.get(0).getY()+1 <= 11 ? snake.get(0).getY()+1 : 0));break;
         }
     }
 
     public void grow(){
-        snake.add(new Location(snake.get(snake.size())));
+        snake.add(new Location(snake.get(snake.size()-1)));
     }
 
     public void setDirection(char direction){
