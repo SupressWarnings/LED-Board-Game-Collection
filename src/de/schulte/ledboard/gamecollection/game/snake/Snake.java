@@ -13,6 +13,13 @@ public class Snake {
         snake = new ArrayList<>();
         snake.add(head);
         direction = 'R';
+        createSnake();
+    }
+
+    private void createSnake(){
+        for(int i = 0; i < 3; ++i){
+            snake.add(snake.size(), new Location(snake.get(snake.size()-1).getX()-1, snake.get(snake.size()-1).getY()));
+        }
     }
 
     public void move(){
@@ -27,6 +34,10 @@ public class Snake {
             case 'D':
                 snake.add(0, new Location(snake.get(0).getX(), snake.get(0).getY()+1 < 11 ? snake.get(0).getY()+1 : 0));break;
         }
+    }
+
+    public void grow(){
+        snake.add(new Location(snake.get(snake.size())));
     }
 
     public void setDirection(char direction){
