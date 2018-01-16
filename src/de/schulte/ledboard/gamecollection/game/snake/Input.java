@@ -9,7 +9,7 @@ public class Input {
 
     private KeyBuffer inputStack;
 
-    public Input(BoardController controller){
+    Input(BoardController controller){
         inputStack = controller.getKeyBuffer();
     }
 
@@ -25,6 +25,8 @@ public class Input {
                 direction = 'L';
             }else if(input.getKeyCode() == KeyEvent.VK_RIGHT){
                 direction = 'R';
+            }else if(input.getKeyCode() == KeyEvent.VK_C){
+                direction = 'C';
             }
             inputStack.clear();
         }

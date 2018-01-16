@@ -9,7 +9,7 @@ public class Snake {
     private ArrayList<Location> snake;
     private char direction;
 
-    public Snake(Location head){
+    Snake(Location head){
         snake = new ArrayList<>();
         snake.add(head);
         direction = 'R';
@@ -50,7 +50,7 @@ public class Snake {
         return direction;
     }
 
-    public ArrayList<Location> getSnake() {
+    public ArrayList<Location> getSnakePositions() {
         return snake;
     }
 }

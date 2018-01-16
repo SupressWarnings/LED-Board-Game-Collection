@@ -8,11 +8,9 @@ import java.util.ArrayList;
 
 public class View {
     private BoardController controller;
-    private ArrayList<Location> lastSnake;
 
-    public View(BoardController controller, ArrayList<Location> lastSnake){
+    View(BoardController controller){
         this.controller = controller;
-        this.lastSnake = lastSnake;
     }
 
     public void drawSnake(ArrayList<Location> elements){
@@ -21,7 +19,6 @@ public class View {
             controller.setColor(element.getX(), element.getY(), 10, 100, 10);
         }
         controller.setColor(elements.get(0).getX(), elements.get(0).getY(), 10, 120, 10);
-        lastSnake = elements;
     }
 
     public void drawApple(Location apple){
@@ -78,5 +75,21 @@ public class View {
         line1.draw();
         line2.draw();
         line3.draw();
+    }
+
+    public void drawScore(int points){
+        Rectangle relativeLine = new Rectangle(controller, 9, 1, 1, 4, new int[]{100, 30, 100});
+        Rectangle relativeLine2 = new Rectangle(controller, 9, 1, 1, 6, new int[]{100, 30, 100});
+        relativeLine.draw();
+        relativeLine2.draw();
+        int i = 1;
+        while(points > 0){
+            if(points % 2*i != 0){
+                controller.setColor(i + 1, 5, 127, 127, 127);
+            }
+            points = points >>> 1;
+            ++i;
+        }
+        controller.updateLedStripe();
     }
 }
