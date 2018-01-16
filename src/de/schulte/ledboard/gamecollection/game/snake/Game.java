@@ -38,7 +38,7 @@ public class Game {
             }
             view.drawSnake(snake.getSnake());
             view.drawApple(apple);
-            controller.sleep(150);
+            controller.sleep(100);
         }
         controller.sleep(1000);
     }
@@ -62,7 +62,6 @@ public class Game {
         if(snake.getSnake().get(0).equals(apple)){
             snake.grow();
             createApple();
-            System.out.println("Apfel gefressen");
         }
     }
 
@@ -76,6 +75,5 @@ public class Game {
                 }
             }
         }
-        System.out.println("Apfel erzeugt");
     }
 }

@@ -41,7 +41,9 @@ public class Snake {
     }
 
     public void setDirection(char direction){
-        this.direction = direction;
+        if(!(direction == 'U' && this.direction == 'D' || direction == 'D' && this.direction == 'U' || direction == 'L' && this.direction == 'R' || direction == 'R' && this.direction == 'L')){
+            this.direction = direction;
+        }
     }
 
     public char getDirection(){
