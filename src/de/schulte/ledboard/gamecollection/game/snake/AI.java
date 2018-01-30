@@ -1,6 +1,6 @@
 package de.schulte.ledboard.gamecollection.game.snake;
 
-import de.schulte.ledboard.gamecollection.game.snake.util.Location;
+import de.schulte.ledboard.gamecollection.util.Location;
 
 public class AI {
 

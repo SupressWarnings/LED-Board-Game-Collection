@@ -1,7 +1,7 @@
 package de.schulte.ledboard.gamecollection.game.snake;
 
 import de.schulte.ledboard.gamecollection.drawable.Rectangle;
-import de.schulte.ledboard.gamecollection.game.snake.util.Location;
+import de.schulte.ledboard.gamecollection.util.Location;
 import ledControl.BoardController;
 
 import java.util.ArrayList;

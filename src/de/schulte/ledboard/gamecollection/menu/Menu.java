@@ -86,9 +86,11 @@ public class Menu {
             case 1:
                 de.schulte.ledboard.gamecollection.game.snake.View.drawMenu(controller);break;
             case 2:
-                drawTicTacToe();break;
+                drawSpaceInvader();break;
             case 3:
                 drawPong();break;
+            case 4:
+                drawTicTacToe();break;
         }
         controller.updateLedStripe();
     }
@@ -102,7 +104,9 @@ public class Menu {
         controller.resetColors();
         switch (currentGame){
             case 1:
-                new de.schulte.ledboard.gamecollection.game.snake.Game(controller);
+                new de.schulte.ledboard.gamecollection.game.snake.Game(controller);break;
+            case 2:
+                new de.schulte.ledboard.gamecollection.game.spaceinvader.Game(controller);break;
             case 10000:break;
         }
     }
@@ -149,5 +153,14 @@ public class Menu {
         line5.draw();
         line6.draw();
         controller.setColor(9, 1, new int[]{0, 0, 0});
+    }
+
+    private void drawSpaceInvader(){
+        Rectangle enemies = new Rectangle(controller, 6, 4, 4, 1, new int[]{0, 127, 0});
+        Rectangle deadEnemies = new Rectangle(controller, 3, 1, 6, 4, new int[]{0, 0, 0});
+        controller.setColor(5, 11, new int[]{127, 127, 127});
+        controller.setColor(6, 8, new int[]{127, 0, 0});
+        enemies.draw();
+        deadEnemies.draw();
     }
 }

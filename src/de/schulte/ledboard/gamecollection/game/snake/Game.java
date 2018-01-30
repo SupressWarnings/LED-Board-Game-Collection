@@ -1,6 +1,6 @@
 package de.schulte.ledboard.gamecollection.game.snake;
 
-import de.schulte.ledboard.gamecollection.game.snake.util.Location;
+import de.schulte.ledboard.gamecollection.util.Location;
 import ledControl.BoardController;
 
 import java.util.Random;
@@ -54,7 +54,7 @@ public class Game {
             }
             view.drawSnake(snake.getSnakePositions());
             view.drawApple(apple);
-            controller.sleep(0);
+            controller.sleep(150);
         }
         controller.sleep(1500);
         controller.resetColors();

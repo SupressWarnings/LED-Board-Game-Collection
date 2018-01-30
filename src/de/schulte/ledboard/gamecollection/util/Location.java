@@ -1,4 +1,4 @@
-package de.schulte.ledboard.gamecollection.game.snake.util;
+package de.schulte.ledboard.gamecollection.util;
 
 public class Location {
     private final int x, y;
