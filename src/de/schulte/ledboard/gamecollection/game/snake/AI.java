@@ -6,6 +6,7 @@ public class AI {
 
     private Game game;
     private int turn = 0;
+    private boolean mode = true;
 
     AI(Game game){
         this.game = game;
@@ -13,8 +14,7 @@ public class AI {
     }
 
     public void play(){
-        boolean state = true;
-        if(state){
+        if(mode){
             if(game.getSnake().getDirection() == 'U'){
                 int appleY = game.getSnake().getSnakePositions().get(0).getY() == 0 ? 11 : game.getSnake().getSnakePositions().get(0).getY() - 1;
                 if(game.getApple().getY() == appleY){
@@ -25,7 +25,7 @@ public class AI {
                 if (game.getApple().getY() == appleY) {
                     game.setBufferDirection('R');
                 }
-        }else if(game.getSnake().getDirection() == 'L') {
+            }else if(game.getSnake().getDirection() == 'L') {
                 int appleX = game.getSnake().getSnakePositions().get(0).getX() == 0 ? 11 : game.getSnake().getSnakePositions().get(0).getX() - 1;
                 if (game.getApple().getX() == appleX) {
                     game.setBufferDirection('U');
@@ -78,5 +78,9 @@ public class AI {
 
     public void stop(){
         game.setEnabledAI(false);
+    }
+
+    public void toggleMode(){
+        mode = !mode;
     }
 }

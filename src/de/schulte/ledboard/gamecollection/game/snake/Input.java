@@ -27,6 +27,8 @@ public class Input {
                 direction = 'R';
             }else if(input.getKeyCode() == KeyEvent.VK_C){
                 direction = 'C';
+            }else if(input.getKeyCode() == KeyEvent.VK_1){
+                direction = 'T';
             }
             inputStack.clear();
         }

@@ -48,17 +48,19 @@ public class Game {
                 watson.play();
                 if(direction == 'C'){
                     watson.stop();
+                }else if(direction == 'T'){
+                    watson.toggleMode();
                 }
             }
             view.drawSnake(snake.getSnakePositions());
             view.drawApple(apple);
-            controller.sleep(100);
+            controller.sleep(0);
         }
         controller.sleep(1500);
         controller.resetColors();
         controller.sleep(1500);
         view.drawScore(snake.getSnakePositions().size() - 4);
-        controller.sleep(5000);
+        controller.sleep(8000);
     }
 
     private boolean checkCollisions() {
