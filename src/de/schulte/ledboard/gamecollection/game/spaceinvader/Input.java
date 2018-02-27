@@ -15,17 +15,26 @@ public class Input {
 
     public char getInput(){
         char direction = 'N';
-        KeyEvent input = inputStack.pop();
-        if(input != null && input.getID() == KeyEvent.KEY_PRESSED){
-            if(input.getKeyCode() == KeyEvent.VK_LEFT) {
-                direction = 'L';
-            }else if(input.getKeyCode() == KeyEvent.VK_RIGHT){
-                direction = 'R';
-            }else if(input.getKeyCode() == KeyEvent.VK_SPACE){
-                direction = 'S';
+        boolean spacePressed = false;
+        boolean directionSet = false;
+        while(inputStack.eventsInBuffer() != 0 && !(spacePressed && directionSet)){
+            KeyEvent input = inputStack.pop();
+            if(input != null && input.getID() == KeyEvent.KEY_PRESSED){
+                if(!directionSet && input.getKeyCode() == KeyEvent.VK_LEFT) {
+                    direction = 'L';
+                    directionSet = true;
+                }else if(!directionSet && input.getKeyCode() == KeyEvent.VK_RIGHT){
+                    direction = 'R';
+                    directionSet = true;
+                }
+                if(!spacePressed && input.getKeyCode() == KeyEvent.VK_SPACE){
+                    direction++;
+                    spacePressed = true;
+                }
             }
-            inputStack.clear();
+
         }
+        inputStack.clear();
         return direction;
     }
 }

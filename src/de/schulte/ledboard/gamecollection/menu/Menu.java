@@ -48,7 +48,7 @@ public class Menu {
             drawMenuScreen();
             KeyEvent input = inputControl.pop();
             if(input != null && input.getID() == KeyEvent.KEY_PRESSED){
-                int AMOUNT_GAMES = 3;
+                int AMOUNT_GAMES = 4;
                 if(input.getKeyCode() == KeyEvent.VK_DOWN){
                     --currentGame;
                     if(currentGame == 0){
@@ -86,7 +86,7 @@ public class Menu {
             case 1:
                 de.schulte.ledboard.gamecollection.game.snake.View.drawMenu(controller);break;
             case 2:
-                drawSpaceInvader();break;
+                de.schulte.ledboard.gamecollection.game.spaceinvader.View.drawMenu(controller);break;
             case 3:
                 drawPong();break;
             case 4:
@@ -153,14 +153,5 @@ public class Menu {
         line5.draw();
         line6.draw();
         controller.setColor(9, 1, new int[]{0, 0, 0});
-    }
-
-    private void drawSpaceInvader(){
-        Rectangle enemies = new Rectangle(controller, 6, 4, 4, 1, new int[]{0, 127, 0});
-        Rectangle deadEnemies = new Rectangle(controller, 3, 1, 6, 4, new int[]{0, 0, 0});
-        controller.setColor(5, 11, new int[]{127, 127, 127});
-        controller.setColor(6, 8, new int[]{127, 0, 0});
-        enemies.draw();
-        deadEnemies.draw();
     }
 }

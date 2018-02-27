@@ -6,6 +6,7 @@ public class Player {
 
     private Location location;
     private long lastShot;
+    private byte lifes = 3;
 
     public Player(Location startLocation){
         this.location = startLocation;
@@ -36,5 +37,13 @@ public class Player {
 
     public Location getLocation() {
         return location;
+    }
+
+    public void reduceLife(){
+        --lifes;
+    }
+
+    public byte getLifes() {
+        return lifes;
     }
 }

@@ -65,18 +65,6 @@ public class View {
         controller.updateLedStripe();
     }
 
-    public static void drawMenu(BoardController controller){
-        Rectangle line1 = new Rectangle(controller, 6, 1, 5, 2, new int[]{10, 100, 10});
-        Rectangle line2 = new Rectangle(controller, 1, 2, 10, 3, new int[]{10, 100, 10});
-        Rectangle line3 = new Rectangle(controller, 1, 6, 8, 4, new int[]{10, 100, 10});
-        controller.setColor(9, 4, new int[]{10, 100, 10});
-        controller.setColor(7, 9, new int[]{10, 120, 10});
-        controller.setColor(6, 7, new int[]{120, 10, 10});
-        line1.draw();
-        line2.draw();
-        line3.draw();
-    }
-
     public void drawScore(int points){
         Rectangle relativeLine = new Rectangle(controller, 9, 1, 1, 4, new int[]{100, 30, 100});
         Rectangle relativeLine2 = new Rectangle(controller, 9, 1, 1, 6, new int[]{100, 30, 100});
@@ -91,5 +79,17 @@ public class View {
             ++i;
         }
         controller.updateLedStripe();
+    }
+
+    public static void drawMenu(BoardController controller){
+        Rectangle line1 = new Rectangle(controller, 6, 1, 5, 2, new int[]{10, 100, 10});
+        Rectangle line2 = new Rectangle(controller, 1, 2, 10, 3, new int[]{10, 100, 10});
+        Rectangle line3 = new Rectangle(controller, 1, 6, 8, 4, new int[]{10, 100, 10});
+        controller.setColor(9, 4, new int[]{10, 100, 10});
+        controller.setColor(7, 9, new int[]{10, 120, 10});
+        controller.setColor(6, 7, new int[]{120, 10, 10});
+        line1.draw();
+        line2.draw();
+        line3.draw();
     }
 }
