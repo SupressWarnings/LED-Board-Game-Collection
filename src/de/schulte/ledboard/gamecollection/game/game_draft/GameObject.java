@@ -1,9 +1,9 @@
 package de.schulte.ledboard.gamecollection.game.game_draft;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface GameObject {
-    public boolean update(List<GameObject> gameObjects, List<Character> input);
+    public boolean update(ArrayList<GameObject> gameObjects, ArrayList<Character> input);
 
     public int getType();
 }

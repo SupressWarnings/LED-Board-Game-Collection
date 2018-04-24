@@ -4,7 +4,6 @@ import de.schulte.ledboard.gamecollection.game.game_draft.GameObject;
 import de.schulte.ledboard.gamecollection.util.Location;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Apple implements GameObject {
@@ -14,7 +13,7 @@ public class Apple implements GameObject {
 
     private int xDimension, yDimension;
 
-    public Apple(int xDimension, int yDimension){
+    Apple(int xDimension, int yDimension){
         this.xDimension = xDimension;
         this.yDimension = yDimension;
         r = new Random();
@@ -36,11 +35,11 @@ public class Apple implements GameObject {
     }
 
     public Location getLocation(){
-        return null;
+        return apple;
     }
 
     @Override
-    public boolean update(List<GameObject> gameObjects, List<Character> input) {
+    public boolean update(ArrayList<GameObject> gameObjects, ArrayList<Character> input) {
         for (GameObject gameObject : gameObjects) {
             if (gameObject.getType() == Game.SNAKE) {
                 if (apple.equals(((Snake) gameObjects.get(0)).getSnakePositions().get(0))) {

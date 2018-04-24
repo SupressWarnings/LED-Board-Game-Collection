@@ -13,7 +13,7 @@ public class View {
         this.controller = controller;
     }
 
-    public void drawSnake(ArrayList<Location> elements){
+    void drawSnake(ArrayList<Location> elements){
         controller.resetColors();
         for(Location element : elements){
             controller.setColor(element.getX(), element.getY(), 10, 100, 10);
@@ -21,12 +21,12 @@ public class View {
         controller.setColor(elements.get(0).getX(), elements.get(0).getY(), 10, 120, 10);
     }
 
-    public void drawApple(Location apple){
+    void drawApple(Location apple){
         controller.setColor(apple.getX(), apple.getY(), 120, 10, 10);
         controller.updateLedStripe();
     }
 
-    public void drawWelcomeScreen(){
+    void drawWelcomeScreen(){
         Rectangle s1 = new Rectangle(controller, 3, 1, 0, 0, new int[]{120, 120, 120});
         controller.setColor(0, 1, new int[]{120, 120, 120});
         Rectangle s2 = new Rectangle(controller, 3, 1, 0, 2, new int[]{120, 120, 120});
@@ -65,7 +65,7 @@ public class View {
         controller.updateLedStripe();
     }
 
-    public void drawScore(int points){
+    void drawScore(int points){
         Rectangle relativeLine = new Rectangle(controller, 9, 1, 1, 4, new int[]{100, 30, 100});
         Rectangle relativeLine2 = new Rectangle(controller, 9, 1, 1, 6, new int[]{100, 30, 100});
         relativeLine.draw();

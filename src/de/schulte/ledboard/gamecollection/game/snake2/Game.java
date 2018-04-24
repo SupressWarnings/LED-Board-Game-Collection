@@ -101,15 +101,15 @@ public class Game {
         return snake;
     }
 
-    public Location getApple() {
+    Location getApple() {
         return apple;
     }
 
-    public void setBufferDirection(char bufferDirection) {
+    void setBufferDirection(char bufferDirection) {
         this.bufferDirection = bufferDirection;
     }
 
-    public void setEnabledAI(boolean enabledAI) {
+    void setEnabledAI(boolean enabledAI) {
         this.enabledAI = enabledAI;
     }
 }

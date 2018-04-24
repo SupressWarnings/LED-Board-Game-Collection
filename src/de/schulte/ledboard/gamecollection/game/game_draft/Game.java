@@ -1,14 +1,14 @@
 package de.schulte.ledboard.gamecollection.game.game_draft;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public abstract class Game {
 
-    private List<GameObject> gameObjects;
+    private ArrayList<GameObject> gameObjects;
     private View view;
     private Input input;
 
-    public Game(View view, Input input, List<GameObject> gameObjects){
+    public Game(View view, Input input, ArrayList<GameObject> gameObjects){
         this(view, input);
         this.gameObjects = gameObjects;
     }
@@ -16,6 +16,7 @@ public abstract class Game {
     public Game(View view, Input input){
         this.view = view;
         this.input = input;
+        gameObjects = new ArrayList<>();
     }
 
     public void init(){
@@ -30,7 +31,7 @@ public abstract class Game {
         }
     }
 
-    private boolean updateObjects(List<Character> input){
+    private boolean updateObjects(ArrayList<Character> input){
         boolean breakCondition = false;
         for(int i = 0; i < gameObjects.size(); ++i){
             if(gameObjects.get(i).update(gameObjects, input)){
@@ -40,7 +41,7 @@ public abstract class Game {
         return breakCondition;
     }
 
-    private List<Character> getInput(){
+    private ArrayList<Character> getInput(){
         return input.getInput();
     }
 
@@ -48,15 +49,7 @@ public abstract class Game {
         view.drawUpdates(gameObjects);
     }
 
-    public List<GameObject> getGameObjects(){
-        return gameObjects;
-    }
-
     public void insertGameObjects(GameObject gameObject){
         gameObjects.add(gameObject);
-    }
-
-    public void insertGameObjects(List<GameObject> gameObjects){
-        this.gameObjects.addAll(gameObjects);
     }
 }

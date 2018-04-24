@@ -10,8 +10,10 @@ public class GameManager {
         Input input = new Input(controller);
         Game game = new Game(view, input);
         game.init();
-        game.insertGameObjects(new Snake(new Location((int)(controller.getHeight() / 2), (int)(controller.getWidth() / 2))));
+        Snake snake = new Snake(new Location(controller.getHeight() / 2, controller.getWidth() / 2));
+        game.insertGameObjects(snake);
         game.insertGameObjects(new Apple(controller.getWidth(), controller.getHeight()));
         game.gameLoop();
+        view.drawScore(snake.getScore());
     }
 }

@@ -10,12 +10,16 @@ public class Snake implements GameObject {
 
     private ArrayList<Location> snake;
     private char direction;
+    private long lastMove;
 
-    public Snake(Location head){
+    private int score = 0;
+
+    Snake(Location head){
         snake = new ArrayList<>();
         snake.add(head);
 
         direction = 'R';
+        lastMove = System.currentTimeMillis();
 
         initSnake();
     }
@@ -27,16 +31,19 @@ public class Snake implements GameObject {
     }
 
     private void move(){
-        snake.remove(snake.size()-1);
-        switch(direction){
-            case 'R':
-                snake.add(0, new Location(snake.get(0).getX()+1 <= 11 ? snake.get(0).getX()+1 : 0, snake.get(0).getY()));break;
-            case 'L':
-                snake.add(0, new Location(snake.get(0).getX()-1 >= 0 ? snake.get(0).getX()-1 : 11, snake.get(0).getY()));break;
-            case 'U':
-                snake.add(0, new Location(snake.get(0).getX(), snake.get(0).getY()-1 >= 0 ? snake.get(0).getY()-1 : 11));break;
-            case 'D':
-                snake.add(0, new Location(snake.get(0).getX(), snake.get(0).getY()+1 <= 11 ? snake.get(0).getY()+1 : 0));break;
+        if(System.currentTimeMillis() > lastMove + 120){
+            snake.remove(snake.size()-1);
+            switch(direction){
+                case 'R':
+                    snake.add(0, new Location(snake.get(0).getX()+1 <= 11 ? snake.get(0).getX()+1 : 0, snake.get(0).getY()));break;
+                case 'L':
+                    snake.add(0, new Location(snake.get(0).getX()-1 >= 0 ? snake.get(0).getX()-1 : 11, snake.get(0).getY()));break;
+                case 'U':
+                    snake.add(0, new Location(snake.get(0).getX(), snake.get(0).getY()-1 >= 0 ? snake.get(0).getY()-1 : 11));break;
+                case 'D':
+                    snake.add(0, new Location(snake.get(0).getX(), snake.get(0).getY()+1 <= 11 ? snake.get(0).getY()+1 : 0));break;
+            }
+            lastMove = System.currentTimeMillis();
         }
     }
 
@@ -61,25 +68,20 @@ public class Snake implements GameObject {
     }
 
     private void grow(){
+        ++score;
         snake.add(new Location(snake.get(snake.size()-1)));
     }
 
-    public void setDirection(char direction){
-        if(!(direction == 'U' && this.direction == 'D' || direction == 'D' && this.direction == 'U' || direction == 'L' && this.direction == 'R' || direction == 'R' && this.direction == 'L')){
-            this.direction = direction;
-        }
-    }
-
-    public char getDirection(){
-        return direction;
-    }
-
-    public ArrayList<Location> getSnakePositions() {
+    ArrayList<Location> getSnakePositions() {
         return snake;
     }
 
+    int getScore() {
+        return score;
+    }
+
     @Override
-    public boolean update(List<GameObject> gameObjects, List<Character> input) {
+    public boolean update(ArrayList<GameObject> gameObjects, ArrayList<Character> input) {
         if(input.contains('R')){
             direction = 'R';
         }else if(input.contains('L')){

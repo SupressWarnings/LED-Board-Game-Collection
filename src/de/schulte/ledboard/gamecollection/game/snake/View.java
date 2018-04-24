@@ -14,8 +14,25 @@ public class View implements de.schulte.ledboard.gamecollection.game.game_draft.
         this.controller = controller;
     }
 
-    private void drawSnake(Snake snake){
+    void drawScore(int points){
         controller.resetColors();
+        Rectangle relativeLine = new Rectangle(controller, 9, 1, 1, 4, new int[]{100, 30, 100});
+        Rectangle relativeLine2 = new Rectangle(controller, 9, 1, 1, 6, new int[]{100, 30, 100});
+        relativeLine.draw();
+        relativeLine2.draw();
+        int i = 1;
+        while(points > 0){
+            if(points % 2*i != 0){
+                controller.setColor(i + 1, 5, 127, 127, 127);
+            }
+            points = points >>> 1;
+            ++i;
+        }
+        controller.updateLedStripe();
+        controller.sleep(10000);
+    }
+
+    private void drawSnake(Snake snake){
         for(int i = 0; i < snake.getSnakePositions().size(); ++i){
             controller.setColor(snake.getSnakePositions().get(i).getX(), snake.getSnakePositions().get(i).getY(), 10, 100, 10);
         }
@@ -24,11 +41,11 @@ public class View implements de.schulte.ledboard.gamecollection.game.game_draft.
 
     private void drawApple(Apple apple){
         controller.setColor(apple.getLocation().getX(), apple.getLocation().getY(), 120, 10, 10);
-        controller.updateLedStripe();
     }
 
     @Override
     public void drawUpdates(List<GameObject> gameObjects) {
+        controller.resetColors();
         for(GameObject object : gameObjects){
             if(object.getType() == Game.APPLE){
                 drawApple((Apple) object);
@@ -36,10 +53,12 @@ public class View implements de.schulte.ledboard.gamecollection.game.game_draft.
                 drawSnake((Snake) object);
             }
         }
+        controller.updateLedStripe();
     }
 
     @Override
     public void drawWelcomeScreen() {
+        controller.resetColors();
         Rectangle s1 = new Rectangle(controller, 3, 1, 0, 0, new int[]{120, 120, 120});
         controller.setColor(0, 1, new int[]{120, 120, 120});
         Rectangle s2 = new Rectangle(controller, 3, 1, 0, 2, new int[]{120, 120, 120});
@@ -76,6 +95,7 @@ public class View implements de.schulte.ledboard.gamecollection.game.game_draft.
         e2.draw();
         e3.draw();
         controller.updateLedStripe();
+        controller.sleep(2000);
     }
 
     public static void drawMenuScreen(BoardController controller) {

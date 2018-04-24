@@ -3,13 +3,13 @@ package de.schulte.ledboard.gamecollection.game.snake;
 import de.schulte.ledboard.gamecollection.game.game_draft.GameObject;
 import de.schulte.ledboard.gamecollection.game.game_draft.View;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Game extends de.schulte.ledboard.gamecollection.game.game_draft.Game {
-    public static final int SNAKE = 1;
-    public static final int APPLE = 2;
+    static final int SNAKE = 1;
+    static final int APPLE = 2;
 
-    public Game(View view, Input input, List<GameObject> gameObjects) {
+    public Game(View view, Input input, ArrayList<GameObject> gameObjects) {
         super(view, input, gameObjects);
     }
 

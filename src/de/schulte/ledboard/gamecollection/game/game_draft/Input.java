@@ -1,7 +1,7 @@
 package de.schulte.ledboard.gamecollection.game.game_draft;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface Input {
-    public List<Character> getInput();
+    public ArrayList<Character> getInput();
 }
