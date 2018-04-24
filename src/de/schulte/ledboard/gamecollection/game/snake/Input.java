@@ -3,9 +3,11 @@ package de.schulte.ledboard.gamecollection.game.snake;
 import ledControl.BoardController;
 import ledControl.gui.KeyBuffer;
 
-import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.Collections;
 
-public class Input {
+public class Input implements de.schulte.ledboard.gamecollection.game.game_draft.Input {
+
 
     private KeyBuffer inputStack;
 
@@ -13,25 +15,19 @@ public class Input {
         inputStack = controller.getKeyBuffer();
     }
 
-    public char getInput(){
-        char direction = 'N';
-        KeyEvent input = inputStack.pop();
-        if(input != null && input.getID() == KeyEvent.KEY_PRESSED){
-            if(input.getKeyCode() == KeyEvent.VK_UP){
-                direction = 'U';
-            }else if(input.getKeyCode() == KeyEvent.VK_DOWN){
-                direction = 'D';
-            }else if(input.getKeyCode() == KeyEvent.VK_LEFT) {
-                direction = 'L';
-            }else if(input.getKeyCode() == KeyEvent.VK_RIGHT){
-                direction = 'R';
-            }else if(input.getKeyCode() == KeyEvent.VK_C){
-                direction = 'C';
-            }else if(input.getKeyCode() == KeyEvent.VK_1){
-                direction = 'T';
-            }
-            inputStack.clear();
+    @Override
+    public ArrayList<Character> getInput() {
+        ArrayList<Character> uniqueInput = new ArrayList<>();
+        uniqueInput.add('R');
+        uniqueInput.add('L');
+        uniqueInput.add('U');
+        uniqueInput.add('D');
+        ArrayList<Character> input = new ArrayList<>();
+        while(inputStack.eventsInBuffer() != 0){
+            //put to input
+
+            // ... or not
         }
-        return direction;
+        return null;
     }
 }

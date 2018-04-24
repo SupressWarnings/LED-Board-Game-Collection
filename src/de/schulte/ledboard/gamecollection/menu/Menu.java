@@ -84,7 +84,7 @@ public class Menu {
         up.draw();
         switch(currentGame){
             case 1:
-                de.schulte.ledboard.gamecollection.game.snake.View.drawMenu(controller);break;
+                de.schulte.ledboard.gamecollection.game.snake.View.drawMenuScreen(controller);break;
             case 2:
                 de.schulte.ledboard.gamecollection.game.spaceinvader.View.drawMenu(controller);break;
             case 3:
@@ -104,7 +104,7 @@ public class Menu {
         controller.resetColors();
         switch (currentGame){
             case 1:
-                new de.schulte.ledboard.gamecollection.game.snake.Game(controller);break;
+                new de.schulte.ledboard.gamecollection.game.snake.GameManager(controller);break;
             case 2:
                 new de.schulte.ledboard.gamecollection.game.spaceinvader.Game(controller);break;
             case 10000:break;

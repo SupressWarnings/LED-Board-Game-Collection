@@ -1,4 +1,4 @@
-package de.schulte.ledboard.gamecollection.game.snake;
+package de.schulte.ledboard.gamecollection.game.snake2;
 
 import de.schulte.ledboard.gamecollection.util.Location;
 

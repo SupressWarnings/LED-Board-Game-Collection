@@ -75,8 +75,7 @@ public class Game {
             }
             if(enemyShooting == shootingReset){
                 enemyShooting = 0;
-                int loc = r.nextInt(8);
-                enemyShots.add(new Shot(new Location(loc + enemies.getLocation().getX(), enemies.getLocation().getY()), false));
+                enemyShots.add(enemies.shoot());
             }
             if(!enemies.stillAlive()){
                 enemies = new Enemies();

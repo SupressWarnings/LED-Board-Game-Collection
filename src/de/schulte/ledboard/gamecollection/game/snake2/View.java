@@ -1,45 +1,32 @@
-package de.schulte.ledboard.gamecollection.game.snake;
+package de.schulte.ledboard.gamecollection.game.snake2;
 
 import de.schulte.ledboard.gamecollection.drawable.Rectangle;
-import de.schulte.ledboard.gamecollection.game.game_draft.GameObject;
+import de.schulte.ledboard.gamecollection.util.Location;
 import ledControl.BoardController;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class View implements de.schulte.ledboard.gamecollection.game.game_draft.View {
-
+public class View {
     private BoardController controller;
 
-    public View(BoardController controller){
+    View(BoardController controller){
         this.controller = controller;
     }
 
-    private void drawSnake(Snake snake){
+    public void drawSnake(ArrayList<Location> elements){
         controller.resetColors();
-        for(int i = 0; i < snake.getSnakePositions().size(); ++i){
-            controller.setColor(snake.getSnakePositions().get(i).getX(), snake.getSnakePositions().get(i).getY(), 10, 100, 10);
+        for(Location element : elements){
+            controller.setColor(element.getX(), element.getY(), 10, 100, 10);
         }
-        controller.setColor(snake.getSnakePositions().get(0).getX(), snake.getSnakePositions().get(0).getY(), 10, 120, 10);
+        controller.setColor(elements.get(0).getX(), elements.get(0).getY(), 10, 120, 10);
     }
 
-    private void drawApple(Apple apple){
-        controller.setColor(apple.getLocation().getX(), apple.getLocation().getY(), 120, 10, 10);
+    public void drawApple(Location apple){
+        controller.setColor(apple.getX(), apple.getY(), 120, 10, 10);
         controller.updateLedStripe();
     }
 
-    @Override
-    public void drawUpdates(List<GameObject> gameObjects) {
-        for(GameObject object : gameObjects){
-            if(object.getType() == Game.APPLE){
-                drawApple((Apple) object);
-            }else if(object.getType() == Game.SNAKE){
-                drawSnake((Snake) object);
-            }
-        }
-    }
-
-    @Override
-    public void drawWelcomeScreen() {
+    public void drawWelcomeScreen(){
         Rectangle s1 = new Rectangle(controller, 3, 1, 0, 0, new int[]{120, 120, 120});
         controller.setColor(0, 1, new int[]{120, 120, 120});
         Rectangle s2 = new Rectangle(controller, 3, 1, 0, 2, new int[]{120, 120, 120});
@@ -78,7 +65,23 @@ public class View implements de.schulte.ledboard.gamecollection.game.game_draft.
         controller.updateLedStripe();
     }
 
-    public static void drawMenuScreen(BoardController controller) {
+    public void drawScore(int points){
+        Rectangle relativeLine = new Rectangle(controller, 9, 1, 1, 4, new int[]{100, 30, 100});
+        Rectangle relativeLine2 = new Rectangle(controller, 9, 1, 1, 6, new int[]{100, 30, 100});
+        relativeLine.draw();
+        relativeLine2.draw();
+        int i = 1;
+        while(points > 0){
+            if(points % 2*i != 0){
+                controller.setColor(i + 1, 5, 127, 127, 127);
+            }
+            points = points >>> 1;
+            ++i;
+        }
+        controller.updateLedStripe();
+    }
+
+    public static void drawMenu(BoardController controller){
         Rectangle line1 = new Rectangle(controller, 6, 1, 5, 2, new int[]{10, 100, 10});
         Rectangle line2 = new Rectangle(controller, 1, 2, 10, 3, new int[]{10, 100, 10});
         Rectangle line3 = new Rectangle(controller, 1, 6, 8, 4, new int[]{10, 100, 10});

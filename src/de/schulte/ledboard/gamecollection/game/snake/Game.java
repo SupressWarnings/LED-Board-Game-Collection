@@ -1,115 +1,19 @@
 package de.schulte.ledboard.gamecollection.game.snake;
 
-import de.schulte.ledboard.gamecollection.util.Location;
-import ledControl.BoardController;
+import de.schulte.ledboard.gamecollection.game.game_draft.GameObject;
+import de.schulte.ledboard.gamecollection.game.game_draft.View;
 
-import java.util.Random;
+import java.util.List;
 
-public class Game {
-    private Snake snake;
-    private Location apple;
-    private Random r;
-    private BoardController controller;
-    private Input input;
-    private View view;
+public class Game extends de.schulte.ledboard.gamecollection.game.game_draft.Game {
+    public static final int SNAKE = 1;
+    public static final int APPLE = 2;
 
-    private boolean enabledAI = false;
-    private char bufferDirection = 'R';
-    private AI watson;
-
-    public Game(BoardController controller){
-        this.controller = controller;
-        r = new Random();
-        input = new Input(controller);
-        snake = new Snake(new Location(controller.getHeight()/2, controller.getWidth()/2));
-        view = new View(controller);
-        createApple();
-        view.drawWelcomeScreen();
-        controller.sleep(5000);
-        view.drawSnake(snake.getSnakePositions());
-        view.drawApple(apple);
-        play();
+    public Game(View view, Input input, List<GameObject> gameObjects) {
+        super(view, input, gameObjects);
     }
 
-    private void play(){
-        boolean collision = false;
-        while(!collision){
-            snake.move();
-            collision = checkCollisions();
-            char direction = input.getInput();
-            if(!enabledAI){
-                if (direction == 'U' || direction == 'D' || direction == 'L' || direction == 'R') {
-                    snake.setDirection(direction);
-                }else if(direction == 'C'){
-                    watson = new AI(this);
-                }
-            }else{
-                snake.setDirection(bufferDirection);
-                watson.play();
-                if(direction == 'C'){
-                    watson.stop();
-                }else if(direction == 'T'){
-                    watson.toggleMode();
-                }
-            }
-            view.drawSnake(snake.getSnakePositions());
-            view.drawApple(apple);
-            controller.sleep(150);
-        }
-        controller.sleep(1500);
-        controller.resetColors();
-        controller.sleep(1500);
-        view.drawScore(snake.getSnakePositions().size() - 4);
-        controller.sleep(8000);
-    }
-
-    private boolean checkCollisions() {
-        checkAppleCollision();
-        return checkSnakeCollision();
-    }
-
-    private boolean checkSnakeCollision(){
-        boolean collision = false;
-        for(int i = 1; i < snake.getSnakePositions().size(); ++i){
-            if(snake.getSnakePositions().get(i).equals(snake.getSnakePositions().get(0))){
-                collision = true;
-            }
-        }
-        return collision;
-    }
-
-    private void checkAppleCollision(){
-        if(snake.getSnakePositions().get(0).equals(apple)){
-            snake.grow();
-            createApple();
-        }
-    }
-
-    private void createApple(){
-        apple = null;
-        while(apple == null){
-            apple = new Location(r.nextInt(controller.getHeight()), r.nextInt(controller.getWidth()));
-            for(Location element : snake.getSnakePositions()){
-                if(element.equals(apple)){
-                    apple = null;
-                }
-            }
-        }
-    }
-
-    public Snake getSnake() {
-        return snake;
-    }
-
-    public Location getApple() {
-        return apple;
-    }
-
-    public void setBufferDirection(char bufferDirection) {
-        this.bufferDirection = bufferDirection;
-    }
-
-    public void setEnabledAI(boolean enabledAI) {
-        this.enabledAI = enabledAI;
+    public Game(View view, Input input) {
+        super(view, input);
     }
 }

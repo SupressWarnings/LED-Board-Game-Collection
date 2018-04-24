@@ -1,32 +1,28 @@
-package de.schulte.ledboard.gamecollection.game.snake;
+package de.schulte.ledboard.gamecollection.game.snake2;
 
-import de.schulte.ledboard.gamecollection.game.game_draft.GameObject;
 import de.schulte.ledboard.gamecollection.util.Location;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Snake implements GameObject {
+public class Snake {
 
     private ArrayList<Location> snake;
     private char direction;
 
-    public Snake(Location head){
+    Snake(Location head){
         snake = new ArrayList<>();
         snake.add(head);
-
         direction = 'R';
-
-        initSnake();
+        createSnake();
     }
 
-    private void initSnake(){
+    private void createSnake(){
         for(int i = 0; i < 3; ++i){
             snake.add(snake.size(), new Location(snake.get(snake.size()-1).getX()-1, snake.get(snake.size()-1).getY()));
         }
     }
 
-    private void move(){
+    public void move(){
         snake.remove(snake.size()-1);
         switch(direction){
             case 'R':
@@ -40,27 +36,7 @@ public class Snake implements GameObject {
         }
     }
 
-    private boolean checkCollisions(List<GameObject> gameObjects){
-        // apple collision
-        for (GameObject gameObject : gameObjects) {
-            if (gameObject.getType() == Game.APPLE) {
-                if(((Apple) gameObject).getLocation().equals(snake.get(0))){
-                    grow();
-                }
-
-            }
-        }
-
-        boolean breakingCondition = false;
-        for(int i = 2; i < snake.size(); ++i){
-            if(snake.get(0).equals(snake.get(i))){
-                breakingCondition = true;
-            }
-        }
-        return breakingCondition;
-    }
-
-    private void grow(){
+    public void grow(){
         snake.add(new Location(snake.get(snake.size()-1)));
     }
 
@@ -76,25 +52,5 @@ public class Snake implements GameObject {
 
     public ArrayList<Location> getSnakePositions() {
         return snake;
-    }
-
-    @Override
-    public boolean update(List<GameObject> gameObjects, List<Character> input) {
-        if(input.contains('R')){
-            direction = 'R';
-        }else if(input.contains('L')){
-            direction = 'L';
-        }else if(input.contains('D')){
-            direction = 'D';
-        }else if(input.contains('U')){
-            direction = 'U';
-        }
-        move();
-        return checkCollisions(gameObjects);
-    }
-
-    @Override
-    public int getType() {
-        return Game.SNAKE;
     }
 }

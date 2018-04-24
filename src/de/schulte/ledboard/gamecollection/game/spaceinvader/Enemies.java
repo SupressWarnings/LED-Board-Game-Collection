@@ -2,13 +2,19 @@ package de.schulte.ledboard.gamecollection.game.spaceinvader;
 
 import de.schulte.ledboard.gamecollection.util.Location;
 
+import java.util.Random;
+
 public class Enemies {
 
-    Location location;
-    boolean[][] alive;
-    boolean moveMode = true;
+    private Location location;
+    private boolean[][] alive;
+    private boolean moveMode = true;
+    private boolean movingDown = true;
+
+    private Random r;
 
     public Enemies(){
+        r = new Random();
         alive = new boolean[8][3];
         location = new Location(0, 1);
         for(int x = 0; x < alive.length; ++x){
@@ -30,15 +36,26 @@ public class Enemies {
         if(moveMode){
             location = new Location(location.getX()+1, location.getY());
             if(location.getX() == 5){
-                location = new Location(4, location.getY() + 1);
+                if(movingDown){
+                    location = new Location(4, location.getY() + 1);
+                }else{
+                    location = new Location(4, location.getY());
+                }
                 moveMode = false;
             }
         }else{
             location = new Location(location.getX()-1, location.getY());
             if(location.getX() == -1){
-                location = new Location(0, location.getY() + 1);
+                if(movingDown){
+                    location = new Location(0, location.getY() + 1);
+                }else{
+                    location = new Location(0, location.getY());
+                }
                 moveMode = true;
             }
+        }
+        if(location.getY() == 7){
+            movingDown = false;
         }
     }
 
@@ -60,5 +77,21 @@ public class Enemies {
             }
         }
         return !dead;
+    }
+
+    public Shot shoot(){
+        Shot shot = null;
+        int x = -1;
+        do{
+            x = r.nextInt(8);
+        }while(!alive[x][0]);
+        if(alive[x][2]){
+            shot = new Shot(new Location(x, location.getY()+2), false);
+        }else if(alive[x][1]){
+            shot = new Shot(new Location(x, location.getY()+1), false);
+        }else{
+            shot = new Shot(new Location(x, location.getY()), false);
+        }
+        return shot;
     }
 }
