@@ -4,8 +4,10 @@ import ledControl.BoardController;
 import ledControl.gui.KeyBuffer;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.Collections;
 
-public class Input {
+public class Input implements de.schulte.ledboard.gamecollection.game.game_draft.Input {
 
     private KeyBuffer inputStack;
 
@@ -13,28 +15,32 @@ public class Input {
         inputStack = controller.getKeyBuffer();
     }
 
-    public char getInput(){
-        char direction = 'N';
-        boolean spacePressed = false;
-        boolean directionSet = false;
-        while(inputStack.eventsInBuffer() != 0 && !(spacePressed && directionSet)){
-            KeyEvent input = inputStack.pop();
-            if(input != null && input.getID() == KeyEvent.KEY_PRESSED){
-                if(!directionSet && input.getKeyCode() == KeyEvent.VK_LEFT) {
-                    direction = 'L';
-                    directionSet = true;
-                }else if(!directionSet && input.getKeyCode() == KeyEvent.VK_RIGHT){
-                    direction = 'R';
-                    directionSet = true;
+    @Override
+    public ArrayList<Character> getInput() {
+        ArrayList<Character> uniqueInput = new ArrayList<>();
+        uniqueInput.add('R');
+        uniqueInput.add('L');
+        ArrayList<Character> input = new ArrayList<>();
+        while(inputStack.eventsInBuffer() != 0){
+            char inputChar = 'N';
+            KeyEvent inputEvent = inputStack.pop();
+            if(inputEvent.getID() == KeyEvent.KEY_PRESSED){
+                int inputCode = inputEvent.getKeyCode();
+                switch (inputCode){
+                    case KeyEvent.VK_LEFT:
+                        inputChar = 'L';break;
+                    case KeyEvent.VK_RIGHT:
+                        inputChar = 'R';break;
+                    case KeyEvent.VK_SPACE:
+                        inputChar = 'S';break;
                 }
-                if(!spacePressed && input.getKeyCode() == KeyEvent.VK_SPACE){
-                    direction++;
-                    spacePressed = true;
+                if((inputChar == 'S') && !input.contains('S')){
+                    input.add(inputChar);
+                }else if(Collections.disjoint(input, uniqueInput) && uniqueInput.contains(inputChar)){
+                    input.add(inputChar);
                 }
             }
-
         }
-        inputStack.clear();
-        return direction;
+        return input;
     }
 }

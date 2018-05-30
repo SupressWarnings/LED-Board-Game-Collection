@@ -86,7 +86,7 @@ public class Menu {
             case 1:
                 de.schulte.ledboard.gamecollection.game.snake.View.drawMenuScreen(controller);break;
             case 2:
-                de.schulte.ledboard.gamecollection.game.spaceinvader.View.drawMenu(controller);break;
+                de.schulte.ledboard.gamecollection.game.spaceinvader.View.drawMenuScreen(controller);break;
             case 3:
                 drawPong();break;
             case 4:
@@ -106,7 +106,7 @@ public class Menu {
             case 1:
                 new de.schulte.ledboard.gamecollection.game.snake.GameManager(controller);break;
             case 2:
-                new de.schulte.ledboard.gamecollection.game.spaceinvader.Game(controller);break;
+                new de.schulte.ledboard.gamecollection.game.spaceinvader.GameManager(controller);break;
             case 10000:break;
         }
     }

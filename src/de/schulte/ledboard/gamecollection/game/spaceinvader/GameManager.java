@@ -1,19 +1,16 @@
-package de.schulte.ledboard.gamecollection.game.snake;
+package de.schulte.ledboard.gamecollection.game.spaceinvader;
 
 import de.schulte.ledboard.gamecollection.util.Location;
 import ledControl.BoardController;
 
 public class GameManager {
-
     public GameManager(BoardController controller){
         View view = new View(controller);
         Input input = new Input(controller);
         Game game = new Game(view, input);
         game.init();
-        Snake snake = new Snake(new Location(controller.getHeight() / 2, controller.getWidth() / 2));
-        game.insertGameObject(snake);
-        game.insertGameObject(new Apple(controller.getWidth(), controller.getHeight()));
+        game.insertGameObject(new Player(new Location(6, 11), game, controller.getWidth(), controller.getHeight() + 1));
+        game.insertGameObject(new Enemies(new Location(0, 1), controller.getWidth(), controller.getHeight(), 8, game));
         game.gameLoop();
-        view.drawScore(snake.getScore());
     }
 }

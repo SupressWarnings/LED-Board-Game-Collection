@@ -49,7 +49,11 @@ public abstract class Game {
         view.drawUpdates(gameObjects);
     }
 
-    public void insertGameObjects(GameObject gameObject){
+    public void insertGameObject(GameObject gameObject){
         gameObjects.add(gameObject);
+    }
+
+    public void removeGameObject(GameObject object){
+        gameObjects.remove(object);
     }
 }
