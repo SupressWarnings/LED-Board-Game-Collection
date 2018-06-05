@@ -95,7 +95,7 @@ public class View implements de.schulte.ledboard.gamecollection.game.game_draft.
         controller.setColor(9, 11, new int[]{0, 127, 0});
 
         controller.updateLedStripe();
-        controller.sleep(2000);
+        controller.sleep(5000);
     }
 
     public static void drawMenuScreen(BoardController controller){
